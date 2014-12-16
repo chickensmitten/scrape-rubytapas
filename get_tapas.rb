@@ -1,4 +1,4 @@
-#trying to resolve  cannot load such file -- mechanize"
+require 'rubygems'
 require 'mechanize'
 
 BATCH_SIZE = 2
@@ -10,7 +10,7 @@ end
 
 def exit_with(msg)
   say msg
-  puts "...existing..."
+  puts "...exiting..."
   exit
 end
 
@@ -26,7 +26,7 @@ a.get('https://rubytapas.dpdcart.com/subscriber/content') do |page|
 
   say "Got page: " + content_page.title
 
-  exist_with("Couldn't log in.") if content_page.title =~ /Login/
+  exit_with("Couldn't log in.") if content_page.title =~ /Login/
 
   count = 0
   a.page.parser.css('div.blog-entry').each do |entry|
